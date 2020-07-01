@@ -134,6 +134,731 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-nvim" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/01/nvim/">neovim ide</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/01/nvim/" class="archive-article-date">
+  	<time datetime="2020-07-01T04:15:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> _   _                 _              ____             __ _</span><br><span class="line">| \ | | ___  _____   _(_)_ __ ___    / ___|___  _ __  / _(_) __ _</span><br><span class="line">|  \| |/ _ \/ _ \ \ / / | '_ ` _ \  | |   / _ \| '_ \| |_| |/ _` |</span><br><span class="line">| |\  |  __/ (_) \ V /| | | | | | | | |__| (_) | | | |  _| | (_| |</span><br><span class="line">|_| \_|\___|\___/ \_/ |_|_| |_| |_|  \____\___/|_| |_|_| |_|\__, |</span><br><span class="line">                                                            |___/</span><br></pre></td></tr></table></figure>
+
+<h3 id="Supported-Launage"><a href="#Supported-Launage" class="headerlink" title="Supported Launage"></a>Supported Launage</h3><ul>
+<li>c/c++/python/go/bash/markdown</li>
+</ul>
+<div align="center">
+<img  src="./c-lang.png"/> <br/>
+(c-lang ide)
+<img src="./py-lang.png"/> <br/>
+(python dev ide)
+</div>
+
+<h2 id="feature"><a href="#feature" class="headerlink" title="feature"></a>feature</h2><ul>
+<li>#neovim #ide</li>
+</ul>
+<h2 id="Index"><a href="#Index" class="headerlink" title="Index"></a>Index</h2><ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#keyboard-shortcuts">Keyboard Shortcuts</a><ul>
+<li><a href="#1-basic-editor-features">1. Basic Keyboard Shortcuts</a><ul>
+<li><a href="#1.1-the-most-basics">1.1 The Most Basics</a></li>
+<li><a href="#1.5-other-useful-normal-mode-remapping">1.5 Other Useful Normal Mode Remapping</a></li>
+</ul>
+</li>
+<li><a href="#2-window-management">2. Window Management</a><ul>
+<li><a href="#2.1-creating-window-through-split-screen">2.1 Creating Window Through Split Screen</a></li>
+<li><a href="#2.2-moving-the-cursor-between-different-windows">2.2 Moving the Cursor Between Different Windows</a></li>
+</ul>
+</li>
+<li><a href="#3-tab-management">3. Tab Management</a></li>
+<li><a href="#4-terminal-keyboard-shortcuts">4. Terminal Keyboard Shortcuts</a></li>
+</ul>
+</li>
+<li><a href="#plugins">Plugin Shortcuts</a><ul>
+<li>AutoComplete / Snippets<ul>
+<li><a href="#for-code-autocomplete---coc">COC</a></li>
+<li><a href="#ultisnips">Ultisnips</a></li>
+</ul>
+</li>
+<li>File Browsing/Management<ul>
+<li><a href="#nerdtree">NERDTree</a></li>
+<li><a href="#ranger.vim---file-browser">Ranger.vim</a></li>
+<li><a href="#fzf---the-fuzzy-file-finder">FZF</a></li>
+</ul>
+</li>
+<li>Git<ul>
+<li><a href="#gv---commit-browser">GV</a></li>
+<li><a href="#gitgutter">GitGutter</a></li>
+<li><a href="#fzf-gitignore">fzf-gitignore</a></li>
+</ul>
+</li>
+<li>Find / Replace<ul>
+<li><a href="#flygrep---search-in-files">FlyGrep</a></li>
+<li><a href="#far.vim---find-and-replace">far.vim</a></li>
+</ul>
+</li>
+<li>Text Editing<ul>
+<li><a href="#vim-table-mode">vim-table-mode</a></li>
+<li><a href="#vim-multiple-cursors">vim-multiple-cursors</a></li>
+<li><a href="#vim-surround">vim-surround</a></li>
+</ul>
+</li>
+<li>Editor Enhancement<ul>
+<li><a href="#vista.vim">Vista.vim</a> (Taglist)</li>
+<li><a href="#undotree">Undotree</a></li>
+<li><a href="#vim-startify---startup-screen">vim-startify</a> (Startup Screen)</li>
+<li><a href="#vim-signiture---bookmarks">vim-signiture</a> (Bookmarks)</li>
+<li><a href="#autoformat">AutoFormat</a></li>
+<li><a href="#goyo---work-without-distraction">Goyo</a> (Remove distractions)</li>
+</ul>
+</li>
+<li>Vim Apps<ul>
+<li><a href="#vim-starify">vim-starify</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#custom-snippets">Custom Markdown Snippets</a></li>
+</ul>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p><strong>Mac</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#launch_proxy if necessary</span></span><br><span class="line">brew install nodejs ccls npm python ctags ranger</span><br><span class="line">npm install -g neovim bash-language-server</span><br><span class="line">pip install neovim virtualenv cmake-language-server </span><br><span class="line">git <span class="built_in">clone</span> https://github.com/ioperations/nvim ~/.config/nvim</span><br><span class="line">nvim +PlugInstall +UpdateRemotePlugins +checkhealth</span><br><span class="line"><span class="comment">#fill in the blacks nvim provided</span></span><br></pre></td></tr></table></figure>
+<p><strong>Debian</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#launch_proxy if necessary</span></span><br><span class="line">sudo apt install -y nodejs ccls npm python3-pip ctags build-essential ranger</span><br><span class="line">npm install -g neovim bash-language-server</span><br><span class="line">pip install neovim virtualenv cmake-language-server</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/ioperations/nvim ~/.config/nvim</span><br><span class="line">nvim +PlugInstall +UpdateRemotePlugins +checkhealth [ +GoInstallBinaries ]</span><br><span class="line"><span class="comment">#fill in the blacks nvim provided</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Keyboard-Shortcuts"><a href="#Keyboard-Shortcuts" class="headerlink" title="Keyboard Shortcuts"></a>Keyboard Shortcuts</h2><h3 id="1-Basic-Editor-Features"><a href="#1-Basic-Editor-Features" class="headerlink" title="1 Basic Editor Features"></a>1 Basic Editor Features</h3><h4 id="1-1-The-Most-Basics"><a href="#1-1-The-Most-Basics" class="headerlink" title="1.1 The Most Basics"></a>1.1 The Most Basics</h4><p><strong><code>Q</code></strong> : quit current vim window, equals to command <code>:q</code><br><strong><code>S</code></strong> : save the current file, equals to command <code>:w</code></p>
+<h4 id="1-2-Basic-Cursor-Movement"><a href="#1-2-Basic-Cursor-Movement" class="headerlink" title="1.2 Basic Cursor Movement"></a>1.2 Basic Cursor Movement</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>k</code></td>
+<td>Cursor up a terminal line</td>
+</tr>
+<tr>
+<td><code>j</code></td>
+<td>Cursor down a terminal line</td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td>Cursor left</td>
+</tr>
+<tr>
+<td><code>l</code></td>
+<td>Cursor right</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>Cursor to the start of the line</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>Cursor to the end of the line</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> <code>y</code></td>
+<td>Move the view port up 5 lines without moving the cursor</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> <code>e</code></td>
+<td>Move the view port down 5 lines without moving the cursor</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>Move to the start of next word</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>Move to the start of this word</td>
+</tr>
+<tr>
+<td><code>e</code></td>
+<td>Move to the end of this word</td>
+</tr>
+<tr>
+<td><code>W</code></td>
+<td>Move cursor five words forward</td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td>Move cursor five words backword</td>
+</tr>
+</tbody></table>
+<h4 id="1-4-Basic-Text-Manipulating-Commands-in-Normal-Mode"><a href="#1-4-Basic-Text-Manipulating-Commands-in-Normal-Mode" class="headerlink" title="1.4 Basic Text Manipulating Commands in Normal Mode"></a>1.4 Basic Text Manipulating Commands in Normal Mode</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>u</code></td>
+<td><strong>undo</strong></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>Un-indent</td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>Indent</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> <code>a</code></td>
+<td>Increase the number under cursor by 1</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> <code>x</code></td>
+<td>Decrease the number under cursor by 1</td>
+</tr>
+<tr>
+<td><code>SPACE</code> <code>SPACE</code></td>
+<td>Goto the next placeholder (<code>&lt;++&gt;</code>)</td>
+</tr>
+</tbody></table>
+<h4 id="1-5-Other-Useful-Normal-Mode-Remapping"><a href="#1-5-Other-Useful-Normal-Mode-Remapping" class="headerlink" title="1.5 Other Useful Normal Mode Remapping"></a>1.5 Other Useful Normal Mode Remapping</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;leader&gt;dd</code></td>
+<td><strong>Compile/Run the current file c/c++/python/go/sh/make</strong></td>
+</tr>
+<tr>
+<td><code>Y</code></td>
+<td>Copy selected text to system clipboard</td>
+</tr>
+<tr>
+<td><code>z</code> <code>=</code></td>
+<td>Show spell suggestions</td>
+</tr>
+<tr>
+<td><code>SPACE</code> <code>s</code> <code>c</code></td>
+<td>Toggle spell suggestion a</td>
+</tr>
+<tr>
+<td><code>SPACE</code> <code>d</code> <code>w</code></td>
+<td>Find adjacent duplicated word</td>
+</tr>
+<tr>
+<td><code>SPACE</code> <code>t</code> <code>t</code></td>
+<td>Convert every 4 Spaces to a tab</td>
+</tr>
+<tr>
+<td><code>SPACE</code> <code>o</code></td>
+<td>Fold</td>
+</tr>
+<tr>
+<td><code>SPACE</code> <code>-</code></td>
+<td>Previous quick-fix position</td>
+</tr>
+<tr>
+<td><code>SPACE</code> <code>+</code></td>
+<td>Next quick-fix position</td>
+</tr>
+<tr>
+<td><code>\</code> <code>p</code></td>
+<td>Show the path of the current file</td>
+</tr>
+<tr>
+<td><code>r</code> <code>!{SHELL_CMD}</code></td>
+<td>return the SHELL_CMD result to current line</td>
+</tr>
+</tbody></table>
+<h3 id="2-Window-Management"><a href="#2-Window-Management" class="headerlink" title="2 Window Management"></a>2 Window Management</h3><h4 id="2-1-Creating-Window-Through-Split-Screen"><a href="#2-1-Creating-Window-Through-Split-Screen" class="headerlink" title="2.1 Creating Window Through Split Screen"></a>2.1 Creating Window Through Split Screen</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>s</code> <code>k</code></td>
+<td>Create a new horizontal split screen and place it above the current window</td>
+</tr>
+<tr>
+<td><code>s</code> <code>j</code></td>
+<td>Create a new horizontal split screen and place it below the current window</td>
+</tr>
+<tr>
+<td><code>s</code> <code>h</code></td>
+<td>Create a new vertical split screen and place it left to the current window</td>
+</tr>
+<tr>
+<td><code>s</code> <code>l</code></td>
+<td>Create a new vertical split screen and place it right to the current window</td>
+</tr>
+<tr>
+<td><code>s</code> <code>r</code> <code>v</code></td>
+<td>Rotate splits and arrange splits vertically</td>
+</tr>
+<tr>
+<td><code>s</code> <code>r</code> <code>h</code></td>
+<td>Rotate splits and arrange splits horizontally</td>
+</tr>
+</tbody></table>
+<h4 id="2-2-Moving-the-Cursor-Between-Different-Windows"><a href="#2-2-Moving-the-Cursor-Between-Different-Windows" class="headerlink" title="2.2 Moving the Cursor Between Different Windows"></a>2.2 Moving the Cursor Between Different Windows</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;leader&gt;</code> + <code>w</code></td>
+<td>Move cursor to the next window</td>
+</tr>
+<tr>
+<td><code>&lt;leader&gt;</code> + <code>h</code></td>
+<td>Move cursor one window left</td>
+</tr>
+<tr>
+<td><code>&lt;leader&gt;</code> + <code>l</code></td>
+<td>Move cursor one window right</td>
+</tr>
+<tr>
+<td><code>&lt;leader&gt;</code> + <code>k</code></td>
+<td>Move cursor one window up</td>
+</tr>
+<tr>
+<td><code>&lt;leader&gt;</code> + <code>j</code></td>
+<td>Move cursor one window down</td>
+</tr>
+</tbody></table>
+<h3 id="3-Tab-Management"><a href="#3-Tab-Management" class="headerlink" title="3 Tab Management"></a>3 Tab Management</h3><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>t</code> <code>u</code></td>
+<td>Create a new tab</td>
+</tr>
+<tr>
+<td><code>t</code> <code>h</code></td>
+<td>Go one tab left</td>
+</tr>
+<tr>
+<td><code>t</code> <code>l</code></td>
+<td>Go One tab right</td>
+</tr>
+</tbody></table>
+<h3 id="4-Terminal-Keyboard-Shortcuts"><a href="#4-Terminal-Keyboard-Shortcuts" class="headerlink" title="4 Terminal Keyboard Shortcuts"></a>4 Terminal Keyboard Shortcuts</h3><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SPACE</code> <code>/</code></td>
+<td>Create a new split with a terminal below the current window</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> <code>N</code></td>
+<td>Escape from terminal input mode</td>
+</tr>
+</tbody></table>
+<h2 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h2><h4 id="COC-AutoCompletion"><a href="#COC-AutoCompletion" class="headerlink" title="COC (AutoCompletion)"></a>COC (AutoCompletion)</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Space</code> <code>y</code></td>
+<td><strong>Get yank history list</strong></td>
+</tr>
+<tr>
+<td><code>gd</code></td>
+<td>Go to definition</td>
+</tr>
+<tr>
+<td><code>gr</code></td>
+<td>List references</td>
+</tr>
+<tr>
+<td><code>gi</code></td>
+<td>List implementation</td>
+</tr>
+<tr>
+<td><code>gy</code></td>
+<td>Go to type definition</td>
+</tr>
+<tr>
+<td><code>Space</code> <code>r</code> <code>n</code></td>
+<td>Rename a variable</td>
+</tr>
+</tbody></table>
+<h4 id="Ultisnips"><a href="#Ultisnips" class="headerlink" title="Ultisnips"></a>Ultisnips</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;leader&gt;</code> <code>&lt;tab&gt;</code></td>
+<td>Expand a snippet</td>
+</tr>
+</tbody></table>
+<h4 id="NERDTree"><a href="#NERDTree" class="headerlink" title="NERDTree"></a>NERDTree</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>tt</code></td>
+<td><strong>Toggle NerdTree</strong></td>
+</tr>
+<tr>
+<td><code>I</code></td>
+<td>Open in new split</td>
+</tr>
+<tr>
+<td><code>O</code></td>
+<td>Open in new tab</td>
+</tr>
+<tr>
+<td><code>l</code></td>
+<td>Change root</td>
+</tr>
+<tr>
+<td><code>z</code> <code>h</code></td>
+<td>Toggle hidden</td>
+</tr>
+<tr>
+<td><code>,</code> (in NERDTREE)</td>
+<td>Toggle menu</td>
+</tr>
+</tbody></table>
+<h4 id="GitGutter"><a href="#GitGutter" class="headerlink" title="GitGutter"></a>GitGutter</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>H</code></td>
+<td><strong>Show git hunk at current line</strong></td>
+</tr>
+<tr>
+<td><code>SPACE</code> <code>g</code> <code>-</code></td>
+<td>Go to previous git hunk</td>
+</tr>
+<tr>
+<td><code>SPACE</code> <code>g</code> <code>+</code></td>
+<td>Go to next git hunk</td>
+</tr>
+<tr>
+<td><code>SPACE</code> <code>g</code> <code>f</code></td>
+<td>Fold everything except hunks</td>
+</tr>
+</tbody></table>
+<h4 id="vim-table-mode"><a href="#vim-table-mode" class="headerlink" title="vim-table-mode"></a>vim-table-mode</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SPACE</code> <code>t</code> <code>m</code></td>
+<td>Toggle table mode</td>
+</tr>
+<tr>
+<td><code>SPACE</code> <code>t</code> <code>r</code></td>
+<td>Realign table</td>
+</tr>
+</tbody></table>
+<p>See <code>:help table-mode.txt</code> for more.</p>
+<h4 id="Vista-vim"><a href="#Vista-vim" class="headerlink" title="Vista.vim"></a>Vista.vim</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code> <code>t</code></td>
+<td>open function/class/variable finder</td>
+</tr>
+</tbody></table>
+<h4 id="FZF-the-fuzzy-file-finder"><a href="#FZF-the-fuzzy-file-finder" class="headerlink" title="FZF - the fuzzy file finder"></a>FZF - the fuzzy file finder</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code> <code>p</code></td>
+<td><strong>Active FZF</strong></td>
+</tr>
+<tr>
+<td><code>Ctrl</code> <code>u</code></td>
+<td>Move up 1 item</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> <code>e</code></td>
+<td>Move down 1 item</td>
+</tr>
+</tbody></table>
+<h4 id="Undotree"><a href="#Undotree" class="headerlink" title="Undotree"></a>Undotree</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Shift</code> + <code>L</code></td>
+<td>Open Undotree</td>
+</tr>
+<tr>
+<td><code>Shift</code> + <code>K</code></td>
+<td>History go up</td>
+</tr>
+<tr>
+<td><code>Shift</code> + <code>J</code></td>
+<td>History go down</td>
+</tr>
+</tbody></table>
+<h4 id="Ranger-vim-file-browser"><a href="#Ranger-vim-file-browser" class="headerlink" title="Ranger.vim - file browser"></a>Ranger.vim - file browser</h4><ul>
+<li><input disabled="" type="checkbox"> Make sure you have ranger installed<br>Press <code>R</code> to open Ranger (file selector)</li>
+</ul>
+<h4 id="vim-startify-Startup-screen"><a href="#vim-startify-Startup-screen" class="headerlink" title="vim-startify - Startup screen"></a>vim-startify - Startup screen</h4><p>Press <code>&lt;leader&gt;</code> <code>s</code> <code>t</code> to openup <code>startify</code><br>And by default if there being no args recognized as file name,vim auto<br>start <code>startify</code></p>
+<h4 id="vim-signiture-Bookmarks"><a href="#vim-signiture-Bookmarks" class="headerlink" title="vim-signiture - Bookmarks"></a>vim-signiture - Bookmarks</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>m&lt;letter&gt;</code></td>
+<td>Add/remove mark at current line</td>
+<td></td>
+</tr>
+<tr>
+<td><code>m/</code></td>
+<td>List all marks</td>
+<td></td>
+</tr>
+<tr>
+<td><code>mSPACE</code></td>
+<td>Jump to the next mark in buffer</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>For more commands, see <a href="https://github.com/MattesGroeger/vim-bookmarks#usage" target="_blank" rel="noopener">here</a></p>
+<h4 id="vim-multiple-cursors"><a href="#vim-multiple-cursors" class="headerlink" title="vim-multiple-cursors"></a>vim-multiple-cursors</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code>+<code>k</code></td>
+<td>Select next word (multiple cursors)</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>p</code></td>
+<td>Select previous word</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>x</code></td>
+<td>Skip word</td>
+</tr>
+<tr>
+<td><code>Esc</code></td>
+<td>Quit mutiple cursors</td>
+</tr>
+</tbody></table>
+<h4 id="vim-surround"><a href="#vim-surround" class="headerlink" title="vim-surround"></a>vim-surround</h4><p>To add surround (<code>string</code> -&gt; <code>&quot;string&quot;</code>):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string</span><br></pre></td></tr></table></figure>
+<p>press: <code>yskw&#39;</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;string&#39;</span><br></pre></td></tr></table></figure>
+
+<p>To change surround</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;string&#39;</span><br></pre></td></tr></table></figure>
+<p>press: <code>cs&#39;&quot;</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;string&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="far-vim-find-and-replace"><a href="#far-vim-find-and-replace" class="headerlink" title="far.vim - find and replace"></a>far.vim - find and replace</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SPACE</code> <code>f</code> <code>a</code></td>
+<td>Find in the current file</td>
+</tr>
+<tr>
+<td><code>SPACE</code> <code>f</code> <code>r</code></td>
+<td>Find and replace</td>
+</tr>
+</tbody></table>
+<h4 id="FlyGrep-search-in-files"><a href="#FlyGrep-search-in-files" class="headerlink" title="FlyGrep - search in files"></a>FlyGrep - search in files</h4><p>Press <code>Ctrl</code> <code>f</code> to search in files (content)</p>
+<h4 id="fzf-gitignore"><a href="#fzf-gitignore" class="headerlink" title="fzf-gitignore"></a>fzf-gitignore</h4><p>Press <code>Space</code> <code>g</code> <code>i</code> to create a <code>.gitignore</code> file</p>
+<h4 id="GV-commit-browser"><a href="#GV-commit-browser" class="headerlink" title="GV - commit browser"></a>GV - commit browser</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>g</code> <code>v</code></td>
+<td>Open commit browser</td>
+</tr>
+<tr>
+<td><code>q</code></td>
+<td>Quit GV window</td>
+</tr>
+</tbody></table>
+<h4 id="AutoFormat"><a href="#AutoFormat" class="headerlink" title="AutoFormat"></a>AutoFormat</h4><p>Press <code>\</code> <code>f</code> to format code</p>
+<h4 id="Goyo-Work-without-distraction"><a href="#Goyo-Work-without-distraction" class="headerlink" title="Goyo - Work without distraction"></a>Goyo - Work without distraction</h4><p>Press <code>g</code> <code>y</code> to toggle Goyo</p>
+<h2 id="Custom-Snippets"><a href="#Custom-Snippets" class="headerlink" title="Custom Snippets"></a>Custom Snippets</h2><h4 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h4><table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>What it creates</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>,n</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>,b</code></td>
+<td><strong>Bold</strong> text</td>
+</tr>
+<tr>
+<td><code>,s</code></td>
+<td><del>sliced</del> text</td>
+</tr>
+<tr>
+<td><code>,i</code></td>
+<td><em>italic</em> text</td>
+</tr>
+<tr>
+<td><code>,d</code></td>
+<td><code>code block</code></td>
+</tr>
+<tr>
+<td><code>,c</code></td>
+<td>big <code>block of code</code></td>
+</tr>
+<tr>
+<td><code>,m</code></td>
+<td>- [ ] check mark</td>
+</tr>
+<tr>
+<td><code>,p</code></td>
+<td>picture</td>
+</tr>
+<tr>
+<td><code>,a</code></td>
+<td><a href="">link</a></td>
+</tr>
+<tr>
+<td><code>,1</code></td>
+<td># H1</td>
+</tr>
+<tr>
+<td><code>,2</code></td>
+<td>## H2</td>
+</tr>
+<tr>
+<td><code>,3</code></td>
+<td>### H3</td>
+</tr>
+<tr>
+<td><code>,4</code></td>
+<td>#### H4</td>
+</tr>
+<tr>
+<td><code>,l</code></td>
+<td>——–</td>
+</tr>
+</tbody></table>
+<p><code>,f</code> to go to the next <code>&lt;++&gt;</code> (placeholder)</p>
+<p><code>,w</code> to go to the next <code>&lt;++&gt;</code> (placeholder) and then press <code>Enter</code> for you</p>
+<h1 id="Suggestions"><a href="#Suggestions" class="headerlink" title="Suggestions"></a>Suggestions</h1><ul>
+<li>Still,If you work in python-lang dev process use [virtualenv] to have multiple python env</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/01/nvim/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Credits" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
