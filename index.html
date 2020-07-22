@@ -134,6 +134,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-datastruct" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/04/datastruct/">datastruct</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/04/datastruct/" class="archive-article-date">
+  	<time datetime="2020-07-04T09:57:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><ul>
+<li>插入排序<div align=center>
+<img src="./insert_sort.gif">
+</div>
+
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertion_sort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> length)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> tmp = arr[i];</span><br><span class="line">        <span class="keyword">for</span> (j = i; j &gt; <span class="number">0</span> &amp;&amp; arr[j - <span class="number">1</span>] &gt; tmp; j--) &#123;</span><br><span class="line">            arr[j] = arr[j - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        arr[j] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>复杂度：</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/04/datastruct/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-nvim" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -701,12 +775,27 @@
 <td><code>Esc</code></td>
 <td>Quit mutiple cursors</td>
 </tr>
+<tr>
+<td>#### vim-surround</td>
+<td></td>
+</tr>
+<tr>
+<td>To add surround (<code>string</code> -&gt; <code>&quot;string&quot;</code>):</td>
+<td></td>
+</tr>
+<tr>
+<td><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string</span><br></pre></td></tr></table></figure></td>
+<td></td>
+</tr>
+<tr>
+<td>press: <code>yskw&#39;</code>:</td>
+<td></td>
+</tr>
+<tr>
+<td><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;string&#39;</span><br></pre></td></tr></table></figure></td>
+<td></td>
+</tr>
 </tbody></table>
-<h4 id="vim-surround"><a href="#vim-surround" class="headerlink" title="vim-surround"></a>vim-surround</h4><p>To add surround (<code>string</code> -&gt; <code>&quot;string&quot;</code>):</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string</span><br></pre></td></tr></table></figure>
-<p>press: <code>yskw&#39;</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;string&#39;</span><br></pre></td></tr></table></figure>
-
 <p>To change surround</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;string&#39;</span><br></pre></td></tr></table></figure>
 <p>press: <code>cs&#39;&quot;</code>:</p>
@@ -817,6 +906,9 @@
 <h1 id="Suggestions"><a href="#Suggestions" class="headerlink" title="Suggestions"></a>Suggestions</h1><ul>
 <li>Still,If you work in python-lang dev process use [virtualenv] to have multiple python env</li>
 </ul>
+<h2 id="vim-in-batch-editing"><a href="#vim-in-batch-editing" class="headerlink" title="vim in batch editing"></a>vim in batch editing</h2><div align=center >
+<img src="./batchvim.gif">
+</div>
 
       
 
